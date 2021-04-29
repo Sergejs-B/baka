@@ -15,43 +15,10 @@ export class MusicianSearch extends PureComponent {
     }
     render() {
         return (
-
             <View style={{ justifyContent: 'center', flex: 1 }} >
-                <CustomText
-                    style={{ ...textStyles.textStyle, marginLeft: '5%', marginVertical: 5 }}
-                >E-Mail</CustomText>
-                <CustomTextInput
 
-                    textContentType='emailAddress'
-                >
-                </CustomTextInput>
-
-                <CustomText
-                    style={{ ...textStyles.textStyle, marginLeft: '5%', marginVertical: 5 }}
-                >Password</CustomText>
-
-                <CustomTextInput
-                    textContentType='emailAddress'
-                    secureTextEntry
-                />
-                <CustomButton
-                    text="Log In"
-                    onPress={() => Alert.alert('Simple Button pressed')}
-                    buttonColor='rgba(141, 209, 103, 1)'
-                    style={buttonStyles.greenButtonStyle}
-                ></CustomButton>
-                <CustomText style={{ ...textStyles.textStyle, alignSelf: 'center' }}>
-                or
-                </CustomText>
-                <CustomButton
-                    text="Create profile"
-                    onPress={this.goToRegister}
-                    buttonColor='white'
-                    style={{ ...buttonStyles.whiteButtonStyle }}
-                ></CustomButton>
-
+                <CustomText>Musician Search</CustomText>
             </View>
-
         );
     }
 }

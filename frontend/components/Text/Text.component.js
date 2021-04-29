@@ -22,5 +22,3 @@ export default class CustomText extends PureComponent {
         );
     }
 }
-
-

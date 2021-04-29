@@ -5,7 +5,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../../screens/LoginScreen';
 import RegisterScreen from '../../screens/RegisterScreen';
 import BottomTabs from '../BottomTab/BottomTab.component';
-
+import GroupScreen from '../../screens/GroupScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
+import MusicianSearch from '../../screens/MusicianSearch';
+import GroupSearchScreen from '../../screens/GroupSearchScreen';
 
 export class Navigator extends PureComponent {
     render() {
@@ -14,10 +17,15 @@ export class Navigator extends PureComponent {
 
         return (
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="BottomTabs" screenOptions= {{ headerShown: false }}>
+                <Stack.Navigator initialRouteName="Login" screenOptions= {{ headerShown: false }}>
                     <Stack.Screen name="BottomTabs" component={BottomTabs}/>
                     <Stack.Screen name="Login" component={LoginScreen}/>
                     <Stack.Screen name="Register" component={RegisterScreen} />
+                    <Stack.Screen name="Group" component={GroupScreen}/>
+                    <Stack.Screen name="Profile" component={ProfileScreen}/>
+                    <Stack.Screen name="MusicianSearch" component={MusicianSearch}/>
+                    <Stack.Screen name="GroupSearch" component={GroupSearchScreen}/>
+
                 </Stack.Navigator>
             </NavigationContainer>
         );

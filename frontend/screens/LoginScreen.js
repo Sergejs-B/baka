@@ -13,6 +13,11 @@ export class LoginScreen extends PureComponent {
 
         navigation.navigate('Register');
     }
+    goToProfile = () => {
+        const { navigation } = this.props;
+
+        navigation.navigate('BottomTabs');
+    }
     render() {
         return (
 
@@ -36,7 +41,7 @@ export class LoginScreen extends PureComponent {
                 />
                 <CustomButton
                     text="Log In"
-                    onPress={() => Alert.alert('Simple Button pressed')}
+                    onPress={this.goToProfile}
                     buttonColor='rgba(141, 209, 103, 1)'
                     style={buttonStyles.greenButtonStyle}
                 ></CustomButton>
@@ -49,7 +54,6 @@ export class LoginScreen extends PureComponent {
                     buttonColor='white'
                     style={{ ...buttonStyles.whiteButtonStyle }}
                 ></CustomButton>
-
             </View>
 
         );

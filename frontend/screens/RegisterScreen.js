@@ -33,7 +33,7 @@ export class RegisterScreen extends PureComponent {
                     text="Create My Profile"
                     onPress={() => Alert.alert('Simple Button pressed')}
                     buttonColor='rgba(141, 209, 103, 1)'
-                    style={{...buttonStyles.greenButtonStyle, marginVertical: 20 }}
+                    style={{ ...buttonStyles.greenButtonStyle, marginVertical: 20 }}
                 ></CustomButton>
             </View>
 
