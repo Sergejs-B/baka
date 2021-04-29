@@ -1,23 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>ZHMA-ZMIH!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import {
+    StatusBar, SafeAreaView, StyleSheet, Platform
+} from 'react-native';
+import React, { PureComponent } from 'react';
+
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import Navigator from './components/Navigation/Navigation.component';
+
+class App extends PureComponent {
+    render() {
+        return (
+            <Navigator/>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 20,
-    backgroundColor: 'red'
-  },
+export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    }
 });
+
+export default App;

@@ -1,0 +1,50 @@
+{
+    "parser": "babel-eslint",
+    "extends": ["eslint:recommended", "airbnb-base", "plugin:react/recommended"],
+    "env": {
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "browser": false
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "jsx": false
+      },
+      "sourceType": "module"
+    },
+    "globals": {
+      "strapi": true
+    },
+    "rules": {
+      "prefer-destructuring": ["error", {"object": true, "array": false}],
+      "no-continue": [0],
+      "no-underscore-dangle": [0],
+      "no-useless-escape": [0],
+      "import/no-extraneous-dependencies": [0],
+      "no-return-await": [0],
+      "no-use-before-define": [0],
+      "no-plusplus": [0],
+      "radix": [0],
+      "class-methods-use-this": [0],
+      "no-prototype-builtins": [0],
+      "no-await-in-loop": [0],
+      "indent": ["error", 4, { "SwitchCase": 1 }],
+      "template-curly-spacing": ["error", "always"],
+      "import/prefer-default-export": [0, "never"],
+      "import/no-unresolved": [0, "never"],
+      "max-len": [0, "never"],
+      "dot-notation": [0, "never"],
+      "no-undef": [0, "never"],
+      "no-console": [0, "never"],
+      "no-useless-return": [0, "never"],
+      "consistent-return": [0, "never"],
+      "lines-between-class-members": [0],
+      "no-restricted-syntax": [0],
+      "no-template-curly-in-string": [0],
+      "comma-dangle": [1, "never"],
+      "no-restricted-properties": [0],
+      "no-restricted-globals": [0, "never"]
+    }
+  }
