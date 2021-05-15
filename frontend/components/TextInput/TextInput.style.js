@@ -6,12 +6,11 @@ export const textInputStyles = StyleSheet.create({
         width: '90%',
         borderWidth: 2,
         borderStyle: 'solid',
-        alignSelf: 'center',
         borderRadius: 10,
         fontSize: 18,
         color: 'black',
         fontWeight: 'bold',
-        paddingHorizontal: 10
+        padding: 10
     }
 
 });

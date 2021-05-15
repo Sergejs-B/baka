@@ -1,18 +1,15 @@
-import { NavigationContainer } from '@react-navigation/native';
-
 import {
     StatusBar, SafeAreaView, StyleSheet, Platform
 } from 'react-native';
 import React, { PureComponent } from 'react';
-
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
 import Navigator from './components/Navigation/Navigation.component';
 
 class App extends PureComponent {
     render() {
         return (
-            <Navigator/>
+            <SafeAreaView style={styles.container}>
+                <Navigator/>
+            </SafeAreaView>
         );
     }
 }

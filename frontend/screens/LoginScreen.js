@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState } from 'react';
 import { View, Alert } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import CustomButton from '../components/Buttons/Button.component';
 import CustomTextInput from '../components/TextInput/TextInput.component';
 import CustomText from '../components/Text/Text.component';
@@ -18,6 +19,7 @@ export class LoginScreen extends PureComponent {
 
         navigation.navigate('BottomTabs');
     }
+
     render() {
         return (
 
@@ -26,7 +28,7 @@ export class LoginScreen extends PureComponent {
                     style={{ ...textStyles.textStyle, marginLeft: '5%', marginVertical: 5 }}
                 >E-Mail</CustomText>
                 <CustomTextInput
-
+                    style={{ alignSelf: 'center' }}
                     textContentType='emailAddress'
                 >
                 </CustomTextInput>
@@ -38,13 +40,14 @@ export class LoginScreen extends PureComponent {
                 <CustomTextInput
                     textContentType='emailAddress'
                     secureTextEntry
+                    style={{ alignSelf: 'center' }}
                 />
                 <CustomButton
                     text="Log In"
                     onPress={this.goToProfile}
                     buttonColor='rgba(141, 209, 103, 1)'
                     style={buttonStyles.greenButtonStyle}
-                ></CustomButton>
+                />
                 <CustomText style={{ ...textStyles.textStyle, alignSelf: 'center' }}>
                 or
                 </CustomText>
@@ -53,7 +56,7 @@ export class LoginScreen extends PureComponent {
                     onPress={this.goToRegister}
                     buttonColor='white'
                     style={{ ...buttonStyles.whiteButtonStyle }}
-                ></CustomButton>
+                />
             </View>
 
         );

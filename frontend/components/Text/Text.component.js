@@ -14,7 +14,9 @@ export default class CustomText extends PureComponent {
 
         return (
             <View>
-                <Text style={{ ...textStyle, ...style }}
+                <Text
+                    {...this.props}
+                    style={{ ...textStyle, ...style }}
                 > {this.props.children}
                 </Text>
 

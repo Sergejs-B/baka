@@ -16,6 +16,7 @@ export class RegisterScreen extends PureComponent {
                 >E-Mail</CustomText>
                 <CustomTextInput
                     textContentType='emailAddress'
+                    style={{ alignSelf: 'center' }}
                 >
                 </CustomTextInput>
 
@@ -25,10 +26,9 @@ export class RegisterScreen extends PureComponent {
 
                 <CustomTextInput
                     secureTextEntry
+                    style={{ alignSelf: 'center' }}
                 >
-
                 </CustomTextInput>
-
                 <CustomButton
                     text="Create My Profile"
                     onPress={() => Alert.alert('Simple Button pressed')}

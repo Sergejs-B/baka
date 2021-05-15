@@ -15,7 +15,7 @@ export default class CustomButton extends PureComponent {
         // baseButtonStyle.backgroundColor = buttonColor;
         return (
 
-            <TouchableOpacity onPress={onPress} style={{ ...style }} >
+            <TouchableOpacity onPress={onPress} style={{ ...style, ...buttonStyles }} >
                 <Text style={textStyle}>{text}</Text>
             </TouchableOpacity>
 

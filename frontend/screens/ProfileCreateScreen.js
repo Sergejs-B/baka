@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-    View, Image, Platform, StatusBar, ScrollView, KeyboardAvoidingView, TouchableOpacity
+    View, Image, ScrollView, KeyboardAvoidingView
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import CustomButton from '../components/Buttons/Button.component';
@@ -8,44 +8,28 @@ import CustomTextInput from '../components/TextInput/TextInput.component';
 import CustomText from '../components/Text/Text.component';
 import { buttonStyles } from '../components/Buttons/Button.style';
 import { textStyles } from '../components/Text/Text.style';
-import GroupIcon from '../assets/Group.png';
+import BottomTabs from '../components/BottomTab/BottomTab.component';
 import ProfileIcon from '../assets/Profile.png';
 
-// import CustomDropDown from '../components/CustomDropDown/DropDown.component';
-
-export class ProfileScreen extends PureComponent {
+export class ProfileCreateScreen extends PureComponent {
+    goToProfile = () => {
+        const { navigation } = this.props;
+        navigation.navigate('Profile');
+    }
     render() {
         return (
             <KeyboardAvoidingView>
                 <ScrollView >
                     <View style={{ padding: 15 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={GroupIcon} />
+                            <Image source={ProfileIcon} />
                             <View style={{ flex: 1 }}>
-                                <CustomTextInput style={{ marginLeft: 15, width: '60%' }} placeholder='Group Name'/>
+                                <CustomTextInput style={{ marginLeft: 15, width: '60%' }} placeholder='Name Surname'/>
                                 <CustomTextInput style={{ margin: 15, width: '50%', height: 40 }} placeholder='Nickname'/>
                             </View>
 
                         </View>
-                        <CustomText style={{ marginTop: 10 }}>Members</CustomText>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10 }}>
-                            <TouchableOpacity style={{ marginHorizontal: 10 }} >
-                                <Image source={ProfileIcon} style={{ width: 70, height: 70 }}>
-
-                                </Image>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{ marginHorizontal: 10 }}>
-                                <Image source={ProfileIcon} style={{ width: 70, height: 70 }}>
-
-                                </Image>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={{ marginHorizontal: 10 }}>
-                                <Image source={ProfileIcon} style={{ width: 70, height: 70 }}>
-
-                                </Image>
-                            </TouchableOpacity>
-                        </View>
-                        <CustomText style={{ marginTop: 10 }}>CHOOSE GENRE</CustomText>
+                        <CustomText style={{ marginTop: 10 }}>WHAT INSTRUMENT DO YOU PLAY?</CustomText>
                         <View style={{
                             height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 10
                         }}>
@@ -55,7 +39,7 @@ export class ProfileScreen extends PureComponent {
                                 <Picker.Item label = "Maria" value = "maria" />
                             </Picker>
                         </View>
-                        <CustomText style={{ marginTop: 10 }}>DO YOU TAKE NEWBIES TO THE GROUP?</CustomText>
+                        <CustomText style={{ marginTop: 10 }}>HAVE YOU EVER PLAYED IN A GROUP?</CustomText>
                         <View style={{
                             height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 10
                         }}>
@@ -65,7 +49,7 @@ export class ProfileScreen extends PureComponent {
                                 <Picker.Item label = "Maria" value = "maria" />
                             </Picker>
                         </View>
-                        <CustomText style={{ marginTop: 10 }}>REQUIRED EXPERIENCE PLAYING THE INSTRUMENT?</CustomText>
+                        <CustomText style={{ marginTop: 10 }}>HOW LONG DO YOU PLAY YOUR INSTRUMENT?</CustomText>
                         <View style={{
                             height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 10
                         }}>
@@ -76,6 +60,15 @@ export class ProfileScreen extends PureComponent {
                             </Picker>
                         </View>
                         <CustomText style={{ marginTop: 10 }}>CHOOSE GENRE</CustomText>
+                        <View style={{
+                            height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 15
+                        }}>
+                            <Picker style={{ height: 50, width: '100%', borderWidth: 2 }} r>
+                                <Picker.Item label = "Steve" value = "steve" />
+                                <Picker.Item label = "Ellen" value = "ellen" />
+                                <Picker.Item label = "Maria" value = "maria" />
+                            </Picker>
+                        </View>
                         <View style={{ width: '100%' }}>
                             <CustomText style={{ marginTop: 10 }} >NOTES</CustomText>
 
@@ -84,8 +77,9 @@ export class ProfileScreen extends PureComponent {
                             }} multiline numberOfLines={10} />
 
                             <CustomButton
-                                text='CREATE MY GROUP'
+                                text='CREATE PROFILE'
                                 buttonColor='green'
+                                onPress={this.goToProfile}
                                 style={{ ...buttonStyles.greenButtonStyle, width: '100%' }}/>
                         </View>
                     </View>
@@ -94,4 +88,4 @@ export class ProfileScreen extends PureComponent {
         );
     }
 }
-export default ProfileScreen;
+export default ProfileCreateScreen;

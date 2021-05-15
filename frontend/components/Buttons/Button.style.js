@@ -25,5 +25,11 @@ export const buttonStyles = StyleSheet.create({
         color: 'black',
         fontWeight: 'bold',
         alignSelf: 'center'
+    },
+    smallButton: {
+        width: '45%',
+        borderWidth: 2,
+        borderRadius: 7,
+        backgroundColor: 'white'
     }
 });
