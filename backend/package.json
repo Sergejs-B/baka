@@ -1,5 +1,5 @@
 {
-  "name": "baka-1",
+  "name": "backend",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -11,26 +11,25 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "axios": "^0.21.1",
     "knex": "0.21.18",
-    "mysql": "^2.18.1",
-    "sails-mysql": "^1.0.1",
     "sqlite3": "5.0.0",
-    "strapi": "3.5.4",
-    "strapi-admin": "3.5.4",
-    "strapi-connector-bookshelf": "3.5.4",
-    "strapi-plugin-content-manager": "3.5.4",
-    "strapi-plugin-content-type-builder": "3.5.4",
-    "strapi-plugin-email": "3.5.4",
-    "strapi-plugin-upload": "3.5.4",
-    "strapi-plugin-users-permissions": "3.5.4",
-    "strapi-utils": "3.5.4"
+    "strapi": "3.6.2",
+    "strapi-admin": "3.6.2",
+    "strapi-connector-bookshelf": "3.6.2",
+    "strapi-connector-mongoose": "^3.6.2",
+    "strapi-plugin-content-manager": "3.6.2",
+    "strapi-plugin-content-type-builder": "3.6.2",
+    "strapi-plugin-email": "3.6.2",
+    "strapi-plugin-i18n": "3.6.2",
+    "strapi-plugin-upload": "3.6.2",
+    "strapi-plugin-users-permissions": "3.6.2",
+    "strapi-utils": "3.6.2"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "b36343b9-4dd3-41c0-9ac2-ad6a35a98e07"
+    "uuid": "0cf4285b-e649-40dc-a30c-3304463fa019"
   },
   "engines": {
     "node": ">=10.16.0 <=14.x.x",

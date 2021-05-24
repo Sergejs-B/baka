@@ -11,6 +11,7 @@ import GroupSerachSelectedIcon from '../../assets/GroupSearchSelected.png';
 import MusicianSearchIcon from '../../assets/MusicianSearch.png';
 import MusicianSearchSelectedIcon from '../../assets/MusicianSearchSelected.png';
 
+import GroupCreateScreen from '../../screens/GroupCreateScreen';
 import GroupScreen from '../../screens/GroupScreen';
 import ProfileCreateScreen from '../../screens/ProfileCreateScreen';
 import MusicianSearch from '../../screens/MusicianSearch';
@@ -26,7 +27,7 @@ const Tab = createBottomTabNavigator();
 const { backgroundStyle } = bottomTabStyles;
 
 const Profile = () => (
-    <ProfileStack.Navigator>
+    <ProfileStack.Navigator screenOptions= {{ headerShown: false }}>
         <ProfileStack.Screen
             component={ ProfileCreateScreen }
             name="ProfileCreate"
@@ -39,13 +40,13 @@ const Profile = () => (
     </ProfileStack.Navigator>
 );
 const Group = () => (
-    <GroupStack.Navigator>
+    <GroupStack.Navigator screenOptions= {{ headerShown: false }}>
         <GroupStack.Screen
-            component={ ProfileCreateScreen }
+            component={ GroupCreateScreen }
             name="GroupCreate"
         />
         <GroupStack.Screen
-            component={ ProfileScreen }
+            component={ GroupScreen }
             name="Group"
         />
 
