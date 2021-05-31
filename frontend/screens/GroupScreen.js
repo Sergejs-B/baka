@@ -12,16 +12,63 @@ import ProfileIcon from '../assets/Profile.png';
 import GroupIcon from '../assets/Group.png';
 import EditButton from '../assets/EditButton.png';
 import NotificationButton from '../assets/NotificationButton.png';
+import { getGroup } from '../functions/endpoints/group';
+import { getMusician } from '../functions/endpoints/musician';
+import { getUserData } from '../functions/AsyncStrorage/index';
 
-export class ProfileScreen extends PureComponent {
-    goToProfileCreate = () => {
-        const { navigation } = this.props;
-        navigation.navigate('ProfileCreate');
-    }
+export class GroupScreen extends PureComponent {
     state={
-        isVisible: false
+        isVisible: false,
+        genre: 'hiphop',
+        playedInGroup: true,
+        experience: 0,
+        groupNickame: '',
+        groupName: '',
+        notes: '',
+        ownerId: '',
+        groupId: '',
+        musicianId: ''
     }
+    goToGroupUpdate = () => {
+        const { navigation } = this.props;
+        navigation.navigate('GroupUpdate');
+    };
+    componentDidMount() {
+        getUserData().then((user) => this.setState({
+            musicianId: user.id
+        },
+        () => getMusician(this.state.musicianId).then((musician) => this.setState({
+            groupId: musician.data.profileData.groupId
+        }, () => getGroup(this.state.groupId).then((group) => this.setState({
+            genre: group.data.groupData.genre,
+            playedInGroup: group.data.groupData.playedInGroup,
+            experience: group.data.groupData.experience,
+            groupName: group.data.groupData.groupName,
+            groupNickname: group.data.groupData.groupNickname,
+            notes: group.data.groupData.notes
+
+        }))))));
+    }
+
     render() {
+        checkSwitch = (param) => {
+            switch (param) {
+                case 0:
+                    return (
+                        <CustomText>Less than 1 year</CustomText>
+                    );
+                case 1:
+                    return (
+                        <CustomText>1-3 years</CustomText>);
+                case 3:
+                    return (
+                        <CustomText>3-5 years</CustomText>);
+                case 5:
+                    return (
+                        <CustomText>More than 5 years</CustomText>);
+                default:
+            }
+        };
         return (
             <KeyboardAvoidingView>
                 <ScrollView >
@@ -49,10 +96,10 @@ export class ProfileScreen extends PureComponent {
                     </Modal>
                     <View style={{ padding: 15 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={ProfileIcon} />
+                            <Image source={GroupIcon} />
                             <View style={{ flex: 1 }}>
-                                <CustomText style={{ marginLeft: 15, fontSize: 20 }} placeholder='Name Surname'>UsernameSurname </CustomText>
-                                <CustomText style={{ margin: 15, width: '50%' }} placeholder='Nickname'>@nickname</CustomText>
+                                <CustomText style={{ marginLeft: 15, fontSize: 20 }}>{this.state.groupName} </CustomText>
+                                <CustomText style={{ margin: 15, width: '50%' }}>{this.state.groupNickname}</CustomText>
                             </View>
 
                         </View>
@@ -88,16 +135,8 @@ export class ProfileScreen extends PureComponent {
                                 </Image>
                             </TouchableOpacity>
                         </View>
-                        <CustomText style={{ marginTop: 10 }}>INSTRUMENTS:</CustomText>
-                        <CustomText>Guitar</CustomText>
-                        <View
-                            style={{
-                                borderBottomColor: 'black',
-                                borderBottomWidth: 1
-                            }}
-                        />
-                        <CustomText style={{ marginTop: 10 }}>EXPERIENCE OF PLAYING THE INSTRUMENT:</CustomText>
-                        <CustomText>2 years</CustomText>
+                        <CustomText style={{ marginTop: 10 }}>REQUIRED EXPERIENCE OF PLAYING THE INSTRUMENT:</CustomText>
+                        {checkSwitch(this.state.experience)}
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -105,7 +144,7 @@ export class ProfileScreen extends PureComponent {
                             }}
                         />
                         <CustomText style={{ marginTop: 10 }}>PLAYED IN THE GROUPS:</CustomText>
-                        <CustomText>2 years</CustomText>
+                        <CustomText>{this.state.playedInGroup ? ('Yes') : ('No') }</CustomText>
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -113,7 +152,7 @@ export class ProfileScreen extends PureComponent {
                             }}
                         />
                         <CustomText style={{ marginTop: 10 }}>GENRE</CustomText>
-                        <CustomText>Post-punk</CustomText>
+                        <CustomText>{this.state.genre}</CustomText>
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -121,10 +160,10 @@ export class ProfileScreen extends PureComponent {
                             }}
                         />
                         <View style={{ width: '100%' }}>
-                            <CustomText style={{ marginTop: 10 }} >ABOUT ME</CustomText>
+                            <CustomText style={{ marginTop: 10 }} >ABOUT GROUP</CustomText>
 
-                            <CustomText>ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                            <CustomText>
+                                {this.state.notes}
                             </CustomText>
 
                         </View>
@@ -140,7 +179,7 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
                         backgroundColor: 'white',
                         borderRadius: 75
                     }}
-                    onPress={this.goToProfileCreate}
+                    onPress={this.goToGroupUpdate}
                     >
                         <Image source={EditButton} style={{
                             height: 75, width: 75
@@ -158,4 +197,4 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
         );
     }
 }
-export default ProfileScreen;
+export default GroupScreen;

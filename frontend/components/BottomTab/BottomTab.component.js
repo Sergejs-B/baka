@@ -10,7 +10,6 @@ import GroupSearchIcon from '../../assets/GroupSearch.png';
 import GroupSerachSelectedIcon from '../../assets/GroupSearchSelected.png';
 import MusicianSearchIcon from '../../assets/MusicianSearch.png';
 import MusicianSearchSelectedIcon from '../../assets/MusicianSearchSelected.png';
-
 import GroupCreateScreen from '../../screens/GroupCreateScreen';
 import GroupScreen from '../../screens/GroupScreen';
 import ProfileCreateScreen from '../../screens/ProfileCreateScreen';
@@ -18,23 +17,32 @@ import MusicianSearch from '../../screens/MusicianSearch';
 import GroupSearchScreen from '../../screens/GroupSearchScreen';
 import { bottomTabStyles } from './BottomTab.style';
 import ProfileScreen from '../../screens/ProfileScreen';
+import ProfileUpdateScreen from '../../screens/ProfileUpdateScreen';
+import GroupUpdateScreen from '../../screens/GroupUpdateScreen';
 
 const ProfileStack = createStackNavigator();
 const GroupStack = createStackNavigator();
 
-
 const Tab = createBottomTabNavigator();
 const { backgroundStyle } = bottomTabStyles;
 
-const Profile = () => (
+const Profile = (profileProps) => (
     <ProfileStack.Navigator screenOptions= {{ headerShown: false }}>
         <ProfileStack.Screen
-            component={ ProfileCreateScreen }
-            name="ProfileCreate"
-        />
+
+            name="ProfileCreate">
+            {(props) => <ProfileCreateScreen {...props} triggerUpdateState={profileProps.triggerUpdateState} /> }
+        </ProfileStack.Screen>
+
         <ProfileStack.Screen
-            component={ ProfileScreen }
             name="Profile"
+        >
+            {(props) => <ProfileScreen {...props} triggerUpdateState={profileProps.triggerUpdateState} /> }
+
+        </ProfileStack.Screen>
+        <ProfileStack.Screen
+            name="ProfileUpdate"
+            component={ProfileUpdateScreen}
         />
 
     </ProfileStack.Navigator>
@@ -49,12 +57,17 @@ const Group = () => (
             component={ GroupScreen }
             name="Group"
         />
+        <GroupStack.Screen
+            component={GroupUpdateScreen}
+            name="GroupUpdate"
+        />
 
     </GroupStack.Navigator>
 );
 
 export class BottomTabs extends PureComponent {
     render() {
+        const { triggerUpdateState } = this.props;
         return (
 
             <Tab.Navigator
@@ -85,7 +98,9 @@ export class BottomTabs extends PureComponent {
                     }
                 })}
             >
-                <Tab.Screen name='Profile' component={Profile}/>
+                <Tab.Screen name='Profile' >
+                    {(props) => <Profile {...props} triggerUpdateState={triggerUpdateState} />}
+                </Tab.Screen>
                 <Tab.Screen name='Group' component={Group} />
                 <Tab.Screen name='GroupSearch' component={GroupSearchScreen} />
                 <Tab.Screen name='MusicianSearch' component={MusicianSearch} />

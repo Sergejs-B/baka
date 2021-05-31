@@ -13,7 +13,12 @@ import { textStyles } from '../components/Text/Text.style';
 export class GroupSearchScreen extends PureComponent {
     state = {
         isProfileFilter: true,
-        isCustomFilter: false
+        isCustomFilter: false,
+        instrument: 'guitar',
+        SignedIn: false,
+        playedInGroup: true,
+        experience: 0,
+        genre: 'rock'
     }
 
     setCustomFilterActive = () => {
@@ -57,40 +62,55 @@ export class GroupSearchScreen extends PureComponent {
                                 <View style={{
                                     height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 10
                                 }}>
-                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }} r>
-                                        <Picker.Item label = "Steve" value = "steve" />
-                                        <Picker.Item label = "Ellen" value = "ellen" />
-                                        <Picker.Item label = "Maria" value = "maria" />
+                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }}
+                                        value = {this.state.instrument}
+                                        onValueChange={(itemValue) => this.setState({ instrument: itemValue }) }
+                                    >
+                                        <Picker.Item label = "Guitar" value = "guitar" />
+                                        <Picker.Item label = "Drums" value = "drums" />
+                                        <Picker.Item label = "Bass Guitar" value = "bass" />
+                                        <Picker.Item label = "Vocal" value = "vocal"/>
+                                        <Picker.Item label = "Piano" value = "piano"/>
                                     </Picker>
                                 </View>
                                 <CustomText style={{ marginTop: 10 }}>HAVE YOU EVER PLAYED IN A GROUP?</CustomText>
                                 <View style={{
                                     height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 10
                                 }}>
-                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }} r>
-                                        <Picker.Item label = "Steve" value = "steve" />
-                                        <Picker.Item label = "Ellen" value = "ellen" />
-                                        <Picker.Item label = "Maria" value = "maria" />
+                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }}
+                                        value = {this.state.playedInGroup}
+                                        onValueChange={(itemValue) => this.setState({ playedInGroup: itemValue }) }>
+                                        <Picker.Item label = "Yes" value = {true} />
+                                        <Picker.Item label = "No" value = {false} />
                                     </Picker>
                                 </View>
                                 <CustomText style={{ marginTop: 10 }}>HOW LONG DO YOU PLAY YOUR INSTRUMENT?</CustomText>
                                 <View style={{
                                     height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 10
                                 }}>
-                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }} r>
-                                        <Picker.Item label = "Steve" value = "steve" />
-                                        <Picker.Item label = "Ellen" value = "ellen" />
-                                        <Picker.Item label = "Maria" value = "maria" />
+                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }}
+                                        value = {this.state.experience}
+                                        onValueChange={(itemValue) => this.setState({ experience: itemValue }) }>
+                                        <Picker.Item label = "Less than 1 year" value = {0} />
+                                        <Picker.Item label = "More than 1 year" value = {1} />
+                                        <Picker.Item label = "More than 3 years" value = {3} />
+                                        <Picker.Item label = "More than 5 years" value = {5} />
                                     </Picker>
                                 </View>
                                 <CustomText style={{ marginTop: 10 }}>CHOOSE GENRE</CustomText>
                                 <View style={{
                                     height: 50, width: '100%', borderWidth: 2, borderRadius: 7, marginTop: 15
                                 }}>
-                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }} r>
-                                        <Picker.Item label = "Steve" value = "steve" />
-                                        <Picker.Item label = "Ellen" value = "ellen" />
-                                        <Picker.Item label = "Maria" value = "maria" />
+
+                                    <Picker style={{ height: 50, width: '100%', borderWidth: 2 }}
+                                        value = {this.state.genre}
+                                        onValueChange={(itemValue) => this.setState({ genre: itemValue }) }>
+                                        <Picker.Item label = "Rock" value = "rock" />
+                                        <Picker.Item label = "Pop" value = "pop" />
+                                        <Picker.Item label = "Country" value = "country" />
+                                        <Picker.Item label = "Folk" value = "folk"/>
+                                        <Picker.Item label = "Metal" value = "metal"/>
+                                        <Picker.Item label = "Hip-Hop" value = "hiphop"/>
                                     </Picker>
                                 </View>
                             </View>

@@ -1,0 +1,27 @@
+{
+    "collectionName": "groupMembers_group",
+    "info": {
+        "name": "groupMembers",
+        "description": "Group Members Data"
+    },
+    "options": {
+        "draftAndPublish": false,
+        "timestamps": true
+    },
+    "attributes": {
+        "groupId": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "musicianId": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        }
+    }
+}

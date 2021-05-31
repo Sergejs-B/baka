@@ -11,7 +11,7 @@ const authorizationData = async () => {
     return {};
 };
 
-export const REACT_BACKENDAPI_URL = 'https://5bc6435c321b.ngrok.io';
+export const REACT_BACKENDAPI_URL = 'https://b8855201cb41.ngrok.io';
 
 class API {
     async post(url, data) {

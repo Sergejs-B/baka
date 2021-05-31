@@ -1,0 +1,27 @@
+{
+    "collectionName": "groupInstrument_group",
+    "info": {
+        "name": "groupInstument",
+        "description": "Group Instruments Data"
+    },
+    "options": {
+        "draftAndPublish": false,
+        "timestamps": true
+    },
+    "attributes": {
+        "groupId": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "instrument": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        }
+    }
+}

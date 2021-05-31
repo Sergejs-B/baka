@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "musician.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/create/:user_id",
+      "handler": "musician.createMusician",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/getMusician/:user_id",
+      "handler": "musician.getMusician",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/updateMusician/:user_id",
+      "handler": "musician.updateMusician",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/findMusician/:genre/:experience/:playedInGroup/:instrument",
+      "handler": "musician.findMusician",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

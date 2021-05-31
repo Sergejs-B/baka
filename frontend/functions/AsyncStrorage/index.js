@@ -1,8 +1,7 @@
-import AsyncStorage from 'react-native-async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AUTH_TOKEN = 'auth_token';
 export const USER = 'user';
-
 
 export const setAuthorizationToken = async (token) => {
     try {
@@ -34,7 +33,7 @@ export const getAuthorizationToken = async () => {
 
 export const setUserData = async (user) => {
     try {
-        await AsyncStorage.setItem(USER, user);
+        await AsyncStorage.setItem(USER, JSON.stringify(user));
     } catch (e) {
         // eslint-disable-next-line no-console
         console.log(e);
@@ -53,7 +52,7 @@ export const deleteUserData = async () => {
 // eslint-disable-next-line consistent-return
 export const getUserData = async () => {
     try {
-        return AsyncStorage.getItem(USER);
+        return JSON.parse(await AsyncStorage.getItem(USER));
     } catch (e) {
         // eslint-disable-next-line no-console
         console.log(e);

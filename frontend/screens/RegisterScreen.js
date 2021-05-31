@@ -14,13 +14,18 @@ export class RegisterScreen extends ValidationComponent {
         email: '',
         password: ''
     }
+    goToLogin = () => {
+        const { navigation } = this.props;
+        navigation.navigate('Login');
+    }
     validation() {
         this.validate({
             email: { required: true, email: true },
             password: { required: true }
         });
-        if (this.isFormValid) {
+        if (this.isFormValid()) {
             this.createAccount();
+            this.goToLogin();
         }
     }
     createAccount() {
@@ -29,7 +34,7 @@ export class RegisterScreen extends ValidationComponent {
                 const { data: { user, jwt } } = response;
 
                 setAuthorizationToken(jwt);
-                setUserData = user;
+                setUserData(user);
 
                 return {
                     status: 'success'
@@ -45,7 +50,6 @@ export class RegisterScreen extends ValidationComponent {
     }
 
     render() {
-        console.log(this.state.email);
         return (
 
             <View style={{ justifyContent: 'center', flex: 1 }}>
@@ -57,8 +61,11 @@ export class RegisterScreen extends ValidationComponent {
                     onChangeText={(email) => this.setState({ email })}
                     textContentType='emailAddress'
                     style={{ alignSelf: 'center' }}
-                >
-                </CustomTextInput>
+                />
+
+                { this.isFieldInError('email') && this.getErrorsInField('email').map(
+                    (errorMessage) => <CustomText key={ errorMessage } style={{ color: 'red' }}>{ errorMessage }</CustomText>
+                ) }
 
                 <CustomText
                     style={{ ...textStyles.textStyle, marginLeft: '5%', marginVertical: 5 }}
@@ -69,8 +76,10 @@ export class RegisterScreen extends ValidationComponent {
                     onChangeText={(password) => this.setState({ password })}
                     secureTextEntry
                     style={{ alignSelf: 'center' }}
-                >
-                </CustomTextInput>
+                />
+                { this.isFieldInError('email') && this.getErrorsInField('email').map(
+                    (errorMessage) => <CustomText key={ errorMessage } style={{ color: 'red' }}>{ errorMessage }</CustomText>
+                ) }
                 <CustomButton
                     text="Create My Profile"
                     onPress= {() => this.validation()}

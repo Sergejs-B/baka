@@ -1,0 +1,76 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "group.index",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/createGroup",
+      "handler": "group.createGroup",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/getGroup/:group_id",
+      "handler": "group.getGroup",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/createGroupInstrument",
+      "handler": "group.createGroupInstrument",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/getGroupInstrument/:group_id",
+      "handler": "group.getGroupInstrument",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/updateGroup/:group_id",
+      "handler": "group.updateGroup",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/findGroup/:genre/:experience/:playedInGroup/:instrument",
+      "handler": "group.findGroup",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/createGroupInvite",
+      "handler": "group.createGroupInvite",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/getGroupInvite/:group_id",
+      "handler": "group.getGroupInvite",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+    "collectionName": "group_group",
+    "info": {
+        "name": "group",
+        "description": "Group Data"
+    },
+    "options": {
+        "draftAndPublish": false,
+        "timestamps": true
+    },
+    "attributes": {
+        "ownerId": {
+            "type": "string",
+            "minLength": 2,
+            "unique": true,
+            "configurable": false,
+            "required": true
+        },
+        "groupName": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "groupNickname": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "experience": {
+            "type": "integer",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "playedInGroup": {
+            "type": "boolean",
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "genre": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "notes": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        }
+    }
+}

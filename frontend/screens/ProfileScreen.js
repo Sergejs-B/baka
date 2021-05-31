@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-    View, Image, Modal, StatusBar, ScrollView, KeyboardAvoidingView, TouchableOpacity
+    View, Image, Modal, StatusBar, ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import CustomButton from '../components/Buttons/Button.component';
@@ -8,21 +8,74 @@ import CustomTextInput from '../components/TextInput/TextInput.component';
 import CustomText from '../components/Text/Text.component';
 import { buttonStyles } from '../components/Buttons/Button.style';
 import { textStyles } from '../components/Text/Text.style';
-import BottomTabs from '../components/BottomTab/BottomTab.component';
 import ProfileIcon from '../assets/Profile.png';
 import EditButton from '../assets/EditButton.png';
 import NotificationButton from '../assets/NotificationButton.png';
 import GroupIcon from '../assets/Group.png';
+import { deleteAuthorizationToken, deleteUserData, getUserData } from '../functions/AsyncStrorage';
+import { getMusician } from '../functions/endpoints/musician';
 
 export class ProfileScreen extends PureComponent {
-    goToProfileCreate = () => {
+    goToProfileUpdate = () => {
+        console.log('123');
         const { navigation } = this.props;
-        navigation.navigate('ProfileCreate');
+        navigation.navigate('ProfileUpdate');
     }
+
     state={
-        isVisible: false
+        isVisible: false,
+        musicianId: '',
+        nameSurname: '',
+        experience: 1,
+        playedInGroup: true,
+        genre: '',
+        notes: '',
+        nickname: '',
+        instrument: '',
+        profileCreated: ''
+    }
+
+    componentDidMount() {
+        getUserData().then((user) => this.setState({
+            musicianId: user.id, profileCreated: user.profileCreated
+        },
+        () => getMusician(this.state.musicianId).then((musician) => this.setState({
+            nameSurname: musician.data.profileData.nameSurname,
+            experience: musician.data.profileData.experience,
+            playedInGroup: musician.data.profileData.playedInGroup,
+            genre: musician.data.profileData.genre,
+            notes: musician.data.profileData.notes,
+            nickname: musician.data.profileData.nickname,
+            instrument: musician.data.profileData.instrument
+        }))));
+    }
+    logout= () => {
+        const { triggerUpdateState } = this.props;
+        deleteAuthorizationToken();
+        deleteUserData();
+        triggerUpdateState();
     }
     render() {
+        checkSwitch = (param) => {
+            switch (param) {
+                case 0:
+                    return (
+                        <CustomText>Less than 1 year</CustomText>
+                    );
+                case 1:
+                    return (
+                        <CustomText>1-3 years</CustomText>);
+                case 3:
+                    return (
+                        <CustomText>3-5 years</CustomText>);
+                case 5:
+                    return (
+                        <CustomText>More than 5 years</CustomText>);
+                default:
+                    Alert.alert('NUMBER NOT FOUND');
+            }
+        };
+
         return (
             <KeyboardAvoidingView>
                 <ScrollView >
@@ -54,8 +107,8 @@ export class ProfileScreen extends PureComponent {
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Image source={ProfileIcon} />
                             <View style={{ flex: 1 }}>
-                                <CustomText style={{ marginLeft: 15, fontSize: 20 }} placeholder='Name Surname'>UsernameSurname </CustomText>
-                                <CustomText style={{ margin: 15, width: '50%' }} placeholder='Nickname'>@nickname</CustomText>
+                                <CustomText style={{ marginLeft: 15, fontSize: 20 }} placeholder='Name Surname'>{this.state.nameSurname} </CustomText>
+                                <CustomText style={{ margin: 15, width: '50%' }} placeholder='Nickname'>{this.state.nickname}</CustomText>
                             </View>
 
                         </View>
@@ -75,7 +128,7 @@ export class ProfileScreen extends PureComponent {
                             </TouchableOpacity>
                         </View>
                         <CustomText style={{ marginTop: 10 }}>INSTRUMENT:</CustomText>
-                        <CustomText>Guitar</CustomText>
+                        <CustomText>{this.state.instrument}</CustomText>
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -83,7 +136,8 @@ export class ProfileScreen extends PureComponent {
                             }}
                         />
                         <CustomText style={{ marginTop: 10 }}>EXPERIENCE OF PLAYING THE INSTRUMENT:</CustomText>
-                        <CustomText>2 years</CustomText>
+                        <CustomText>{
+                            checkSwitch(this.state.experience)}</CustomText>
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -91,7 +145,7 @@ export class ProfileScreen extends PureComponent {
                             }}
                         />
                         <CustomText style={{ marginTop: 10 }}>PLAYED IN THE GROUPS:</CustomText>
-                        <CustomText>2 years</CustomText>
+                        <CustomText> {this.state.playedInGroup ? ('Yes') : ('No') }</CustomText>
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -99,7 +153,7 @@ export class ProfileScreen extends PureComponent {
                             }}
                         />
                         <CustomText style={{ marginTop: 10 }}>GENRE</CustomText>
-                        <CustomText>Post-punk</CustomText>
+                        <CustomText>{this.state.genre}</CustomText>
                         <View
                             style={{
                                 borderBottomColor: 'black',
@@ -109,24 +163,25 @@ export class ProfileScreen extends PureComponent {
                         <View style={{ width: '100%' }}>
                             <CustomText style={{ marginTop: 10 }} >ABOUT ME</CustomText>
 
-                            <CustomText>ontrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                            <CustomText>
+                                {this.state.notes}
                             </CustomText>
 
                         </View>
 
                     </View>
 
-                    <TouchableOpacity style={{
-                        position: 'absolute',
-                        marginBottom: 10,
-                        marginRight: 10,
-                        bottom: 0,
-                        right: 0,
-                        backgroundColor: 'white',
-                        borderRadius: 75
-                    }}
-                    onPress={this.goToProfileCreate}
+                    <TouchableOpacity
+                        style={{
+                            position: 'absolute',
+                            marginBottom: 10,
+                            marginRight: 10,
+                            bottom: 0,
+                            right: 0,
+                            backgroundColor: 'white',
+                            borderRadius: 75
+                        }}
+                        onPress={this.goToProfileUpdate}
                     >
                         <Image source={EditButton} style={{
                             height: 75, width: 75
@@ -137,9 +192,9 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
                         style={{
                             ...buttonStyles.whiteButtonStyle, backgroundColor: 'rgba(248, 61, 61, 1)', width: '70%', alignSelf: 'flex-start'
                         }}
-                        text="LOG OUT" onPress = {() => {
-                            this.setState({ isVisible: !this.state.isVisible });
-                        }}/>
+                        text="LOG OUT"
+                        onPress = {this.logout}
+                    />
                 </ScrollView>
             </KeyboardAvoidingView>
         );

@@ -15,6 +15,11 @@
         "configurable": false,
         "required": true
       },
+      "isProfileCreated": {
+        "type":"integer",
+        "configurable": true,
+        "default": 0
+      },
       "provider": {
         "type": "string",
         "configurable": false

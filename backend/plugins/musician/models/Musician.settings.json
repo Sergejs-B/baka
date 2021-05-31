@@ -1,0 +1,75 @@
+{
+    "collectionName": "musician_musician",
+    "info": {
+        "name": "musician",
+        "description": "Musician Data"
+    },
+    "options": {
+        "draftAndPublish": false,
+        "timestamps": true
+    },
+    "attributes": {
+        "musicianId": {
+            "type": "string",
+            "minLength": 2,
+            "unique": true,
+            "configurable": false,
+            "required": true
+        },
+        "nameSurname": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "groupId": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "nickname": {
+            "type": "string",
+            "minLength": 2,
+            "unique": true,
+            "configurable": false,
+            "required": true
+        },
+        "instrument": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "experience": {
+            "type": "integer",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "playedInGroup": {
+            "type": "boolean",
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "genre": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        },
+        "notes": {
+            "type": "string",
+            "minLength": 2,
+            "unique": false,
+            "configurable": false,
+            "required": true
+        }
+    }
+}
